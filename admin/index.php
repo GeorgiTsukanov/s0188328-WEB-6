@@ -18,6 +18,9 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 // Получаем данные из базы
 $applications = getAllApplication(getConnection($config));
 $count = is_array($applications) ? count($applications) : 0;
+
+
+$languageStats = getLanguageStatistics($connection);
 ?>
 
 <!DOCTYPE html>
