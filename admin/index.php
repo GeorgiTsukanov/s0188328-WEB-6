@@ -20,7 +20,7 @@ $applications = getAllApplication(getConnection($config));
 $count = is_array($applications) ? count($applications) : 0;
 
 
-$languageStats = getLanguageStatistics($connection);
+$languageStats = getLanguageStatistics(getConnection($config));
 ?>
 
 <!DOCTYPE html>
