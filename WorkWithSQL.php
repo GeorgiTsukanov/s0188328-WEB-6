@@ -205,4 +205,24 @@ function getPL($conn, $ID){
     }
 }
 
+function getLanguageStatistics($connection) {
+    $query = "
+        SELECT 
+            pl.ProgrammingLanguage, 
+            COUNT(fpl.ID_ProgrammingLanguage) as count
+        FROM 
+            ProgrammingLanguage pl
+        LEFT JOIN 
+            FavoriteProgrammingLanguage fpl ON pl.ID_ProgrammingLanguage = fpl.ID_ProgrammingLanguage
+        GROUP BY 
+            pl.ProgrammingLanguage
+        ORDER BY 
+            count DESC
+    ";
+    
+    $stmt = $connection->query($query);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+?>
+
 ?>
