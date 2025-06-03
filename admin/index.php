@@ -55,6 +55,25 @@ $languageStats = getLanguageStatistics(getConnection($config));
                 <h3>Всего заявок</h3>
                 <div class="stat-value"><?= $count ?></div>
             </div>
+
+            <?php if (!empty($languageStats)): ?>
+                <div class="stat-card">
+                    <h3>Популярные языки</h3>
+                    <div class="language-stats">
+                        <?php 
+                        $maxCount = max(array_column($languageStats, 'count'));
+                        foreach ($languageStats as $language): 
+                            $width = $maxCount > 0 ? ($language['count'] / $maxCount) * 100 : 0;
+                        ?>
+                            <div>
+                                <?= htmlspecialchars($language['ProgrammingLanguage']) ?>: 
+                                <?= htmlspecialchars($language['count']) ?>
+                                <div class="language-bar" style="width: <?= $width ?>%"></div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
         
         <h2>Заявки пользователей</h2>
